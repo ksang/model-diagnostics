@@ -3,7 +3,7 @@ Debugging tools for pytorch neural networks
 
 <figure>
 <img src="imgs/cat_gradients.jpg" alt="Trulli" style="width:100%">
-<figcaption align = "center"><b>Fig.1 - CNN diagnostics, from left to right: origin input; normalized input; positive gradients; negative gradients.</b></figcaption>
+<figcaption align = "center"><b>Fig.1 - CNN diagnostics using input gradients, from left to right: origin input; normalized input; positive gradients; negative gradients.</b></figcaption>
 </figure>
 
 ### Demos
