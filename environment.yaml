@@ -1,0 +1,17 @@
+---
+name: nn-diagnostics
+channels:
+    - pytorch
+    - conda-forge
+    - anaconda
+dependencies:
+    - python=3.9
+    - pytorch=1.12.1
+    - torchvision=0.13.1
+    - jupyter
+    - jupyterthemes
+    - matplotlib
+    - numpy
+    - pre-commit
+    - tqdm
+    - pyyaml
