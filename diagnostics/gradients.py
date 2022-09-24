@@ -29,7 +29,9 @@ def get_gradients(
     batch_size = xs[0].shape[0]
     for i, x in enumerate(xs):
         assert x.shape[0] == batch_size, "input batch size not equal"
-        xs[i] = Variable(x, requires_grad=True)
+        if torch.is_floating_point(x):
+            print(i)
+            xs[i] = Variable(x, requires_grad=True)
 
     pred = model(*xs)
     assert pred.shape == baseline.shape, "output shape not equal to baseline"

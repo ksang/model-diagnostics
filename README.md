@@ -6,9 +6,15 @@ Debugging tools for pytorch neural networks
 <figcaption align = "center"><b>Fig.1 - CNN diagnostics using input gradients, from left to right: origin input; normalized input; positive gradients; negative gradients.</b></figcaption>
 </figure>
 
+<figure>
+<img src="imgs/lm_gradients.jpg" alt="Trulli" style="width:100%">
+<figcaption align = "center"><b>Fig.2 - GPT2 LM diagnostics using input gradients, the input text is "Can humans dream of electric sheep ? I think", next token prediction is "so".</b></figcaption>
+</figure>
+
 ### Demos
 
 - [ConvNets](notebooks/demo_cnn.ipynb)
+- [GPT2 LM](notebooks/demo_lm.ipynb)
 
 ### Environment setup
 
