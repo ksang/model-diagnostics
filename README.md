@@ -8,7 +8,7 @@ Debugging tools for pytorch neural networks
 
 <figure>
 <img src="imgs/lm_gradients.jpg" alt="Trulli" style="width:100%">
-<figcaption align = "center"><b>Fig.2 - GPT2 LM diagnostics using input gradients, the input text is "Can humans dream of electric sheep ? I think", next token prediction is "so".</b></figcaption>
+<figcaption align = "center"><b>Fig.2 - GPT2 LM diagnostics using input gradients, the input text is "Can humans dream of electric sheep ? This is a", next token prediction is "question".</b></figcaption>
 </figure>
 
 ### Demos

@@ -7,7 +7,7 @@ from typing import Union, List
 def get_gradients(
     model: nn.Module,
     inputs: Union[torch.Tensor, List[torch.Tensor]],
-    baseline: torch.Tensor,
+    baseline: Union[torch.Tensor, List[torch.Tensor]],
     target: torch.Tensor,
 ) -> Union[torch.Tensor, List[torch.Tensor]]:
     """
@@ -16,29 +16,32 @@ def get_gradients(
         model (nn.Module): Targeted pytorch model.
         inputs (torch.Tensor, List[torch.Tensor]): Inputs of the model,
             can be single tensor or list of tensors, expected shape BxD or BxCxHxW.
-        baseline (torch.Tensor): Baseline output, used to compare
-            with model output and backprogate gradients, expected shape BxD.
+        baseline (torch.Tensor): Baseline input, used to feed into model
+            get output for comparison and backprogate gradients, expected shape same as inputs.
         target (orch.Tensor): Target label index for the batch,
             for classification task, this is the class id, expected shape one hot tensor BxD.
     Return:
         gradients (torch.Tensor, List[torch.Tensor])
     """
     xs = inputs
+    bs = baseline
     if torch.is_tensor(inputs):
+        assert xs.shape == bs.shape, "input baseline shape not equal"
         xs = [xs]
+        bs = [bs]
     batch_size = xs[0].shape[0]
     for i, x in enumerate(xs):
         assert x.shape[0] == batch_size, "input batch size not equal"
+        assert x.shape == bs[i].shape, "input baseline shape not equal"
         if torch.is_floating_point(x):
-            print(i)
             xs[i] = Variable(x, requires_grad=True)
 
     pred = model(*xs)
-    assert pred.shape == baseline.shape, "output shape not equal to baseline"
+    base_out = model(*bs)
     assert target.shape == pred.shape, "target shape not equal to output"
     # diff = pred * target - baseline
     output_dim = len(pred.shape) - 1
-    diff = torch.sum(pred * target - baseline, -1 * output_dim)
+    diff = torch.sum(pred * target - base_out, -1 * output_dim)
     diff.backward()
 
     if torch.is_tensor(inputs):
