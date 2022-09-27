@@ -16,9 +16,9 @@ def get_input_gradients(
         model (nn.Module): Targeted pytorch model.
         inputs (torch.Tensor, List[torch.Tensor]): Inputs of the model,
             can be single tensor or list of tensors, expected shape BxD or BxCxHxW.
-        baseline (torch.Tensor): Baseline input, used to feed into model
+        baseline (torch.Tensor, List[torch.Tensor]): Baseline input, used to feed into model
             get output for comparison and backprogate gradients, expected shape same as inputs.
-        target (orch.Tensor): Target label index for the batch,
+        target (torch.Tensor): Target label index for the batch,
             for classification task, this is the class id, expected shape one hot tensor BxD.
     Return:
         gradients (torch.Tensor, List[torch.Tensor])
@@ -35,7 +35,4 @@ def get_input_gradients(
 
     if torch.is_tensor(inputs):
         return xs[0].grad
-    res = []
-    for x in xs:
-        res.append(x.grad)
-    return res
+    return [x.grad for x in xs]
