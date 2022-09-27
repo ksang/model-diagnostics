@@ -1,1 +1,1 @@
-from diagnostics.gradients import get_gradients
+from diagnostics.input_gradients import get_input_gradients
