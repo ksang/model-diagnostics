@@ -14,11 +14,11 @@ def initialize_inputs_baseline(
     bs = baseline
     if baseline is None:
         if torch.is_tensor(inputs):
-            bs = torch.zeros(inputs.shape)
+            bs = torch.zeros(inputs.shape).to(inputs.device)
         else:
             bs = []
             for x in inputs:
-                bs.append(torch.zeros(x.shape))
+                bs.append(torch.zeros(x.shape).to(x.device))
 
     if torch.is_tensor(inputs):
         assert xs.shape == bs.shape, "input baseline shape not equal"

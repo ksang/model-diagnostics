@@ -17,10 +17,10 @@ def compute_gradients(
     for inputs in scaled_inputs:
         pred = model(*inputs)
         base_out = model(*baseline)
-        output_dim = len(pred.shape) - 1
-        diff = torch.sum(pred * target - base_out, -1 * output_dim)
+        batch_size = pred.shape[0]
+        diff = torch.sum((pred * target - base_out).view(batch_size, -1), -1)
         model.zero_grad()
-        diff.backward()
+        diff.sum().backward()
         for i, x in enumerate(inputs):
             grads[i].append(x.grad.unsqueeze(0))
     return grads

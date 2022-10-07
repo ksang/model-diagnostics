@@ -28,10 +28,10 @@ def get_input_gradients(
     pred = model(*xs)
     base_out = model(*bs)
     assert target.shape == pred.shape, "target shape not equal to output"
-    output_dim = len(pred.shape) - 1
-    diff = torch.sum(pred * target - base_out, -1 * output_dim)
+    batch_size = pred.shape[0]
+    diff = torch.sum((pred * target - base_out).view(batch_size, -1), -1)
     model.zero_grad()
-    diff.backward()
+    diff.sum().backward()
 
     if torch.is_tensor(inputs):
         return xs[0].grad
