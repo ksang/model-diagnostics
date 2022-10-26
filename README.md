@@ -2,18 +2,18 @@
 Debugging tools for pytorch neural networks
 
 <figure>
-<img src="imgs/cat_gradients.jpg" alt="Trulli" style="width:100%">
-<figcaption align = "center"><b>Fig.1 - CNN diagnostics using integrated gradients and input gradients, from left to right: origin input; integrated gradients; input gradients.</b></figcaption>
+<img src="imgs/cat.png" alt="Trulli" style="width:100%">
+<figcaption align = "center"><b>Fig.1 - Image classification (Resnet) diagnostics using integrated gradients and input gradients, model prediction label is "tiger cat". </b></figcaption>
 </figure>
 
 <figure>
-<img src="imgs/lm_gradients.jpg" alt="Trulli" style="width:100%">
-<figcaption align = "center"><b>Fig.2 - GPT2 LM diagnostics using input gradients, the input text is "Can humans dream of electric sheep ? This is a", next token prediction is "question".</b></figcaption>
+<img src="imgs/lm_integrated_gradients.png" alt="Trulli" style="width:100%">
+<figcaption align = "center"><b>Fig.2 - Language modeling (GPT2) diagnostics using integtated gradients, the input text is "Can humans dream of electric sheep ? This is a", next token prediction is "question".</b></figcaption>
 </figure>
 
 <figure>
-<img src="imgs/lm_integrated_gradients.jpg" alt="Trulli" style="width:100%">
-<figcaption align = "center"><b>Fig.3 - GPT2 LM diagnostics using integrated gradients, with same input and prediction.</b></figcaption>
+<img src="imgs/lm_gradients.png" alt="Trulli" style="width:100%">
+<figcaption align = "center"><b>Fig.3 - Language modeling (GPT2) diagnostics using input gradients, with same input and prediction.</b></figcaption>
 </figure>
 
 ### Methods:
